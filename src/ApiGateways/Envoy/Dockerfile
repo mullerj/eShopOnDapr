@@ -1,4 +1,4 @@
-FROM envoyproxy/envoy:v1.14.2
+FROM envoyproxy/envoy:v1.26.2
 
 COPY src/ApiGateways/Envoy/envoy.yaml /tmpl/envoy.yaml.tmpl
 COPY src/ApiGateways/Envoy/docker-entrypoint.sh /
