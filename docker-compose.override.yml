@@ -65,12 +65,13 @@ services:
   blazor-client:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=http://0.0.0.0:80
+      - ASPNETCORE_URLS=https://0.0.0.0:443
       - ApiGatewayUrlExternal=http://${ESHOP_EXTERNAL_DNS_NAME_OR_IP}:5202
       - IdentityUrlExternal=http://${ESHOP_EXTERNAL_DNS_NAME_OR_IP}:5105
       - SeqServerUrl=http://seq
+      - ASPNETCORE_HTTPS_PORT=443
     ports:
-      - "5104:80"
+      - "5104:443"
 
   catalog-api:
     environment:

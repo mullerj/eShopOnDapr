@@ -8,6 +8,7 @@
     <DockerfileContext>..\..\..\..</DockerfileContext>
     <RootNamespace>Microsoft.eShopOnDapr.BlazorClient.Host</RootNamespace>
     <AssemblyName>Microsoft.eShopOnDapr.BlazorClient.Host</AssemblyName>
+    <UserSecretsId>42efa23a-a6c2-4f1f-8dd5-0240e120fdbf</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
