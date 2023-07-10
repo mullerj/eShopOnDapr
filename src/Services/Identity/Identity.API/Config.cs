@@ -39,6 +39,26 @@ public class Config
     {
         return new List<Client>
             {
+                // JavaScript Client
+                new Client
+                {
+                    ClientId = "js",
+                    ClientName = "eShop SPA OpenId Client",
+                    AllowedGrantTypes = GrantTypes.Implicit,
+                    AllowAccessTokensViaBrowser = true,
+                    RedirectUris =           { $"{configuration["SpaClient"]}/" },
+                    RequireConsent = false,
+                    PostLogoutRedirectUris = { $"{configuration["SpaClient"]}/" },
+                    AllowedCorsOrigins =     { $"{configuration["SpaClient"]}" },
+                    AllowedScopes =
+                    {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        "basket",
+                        "ordering",
+                        "shoppingaggr"
+                    },
+                },
                 new Client
                 {
                     ClientId = "blazor",
