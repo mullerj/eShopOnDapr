@@ -57,6 +57,7 @@ export class OrdersService {
         console.log(identityInfo);
 
         // Identity data mapping:
+        order.email = identityInfo.email;
         order.street = identityInfo.address_street;
         order.city = identityInfo.address_city;
         order.country = identityInfo.address_country;

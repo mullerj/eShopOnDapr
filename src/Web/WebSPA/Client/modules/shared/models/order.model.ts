@@ -1,6 +1,7 @@
 import {IOrderItem} from './orderItem.model';
 
 export interface IOrder {
+    email: string;
     city: number;
     street: string;
     state: string;

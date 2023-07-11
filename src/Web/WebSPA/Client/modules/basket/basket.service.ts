@@ -98,18 +98,15 @@ export class BasketService {
     mapBasketInfoCheckout(order: IOrder): IBasketCheckout {
         let basketCheckout = <IBasketCheckout>{};
 
+        basketCheckout.useremail = order.email;
         basketCheckout.street = order.street
         basketCheckout.city = order.city;
         basketCheckout.country = order.country;
         basketCheckout.state = order.state;
-        basketCheckout.zipcode = order.zipcode;
-        basketCheckout.cardexpiration = order.cardexpiration;
+        basketCheckout.cardexpirationdate = order.cardexpiration;
         basketCheckout.cardnumber = order.cardnumber;
-        basketCheckout.cardsecuritynumber = order.cardsecuritynumber;
-        basketCheckout.cardtypeid = order.cardtypeid;
+        basketCheckout.cardsecuritycode = order.cardsecuritynumber;
         basketCheckout.cardholdername = order.cardholdername;
-        basketCheckout.total = 0;
-        basketCheckout.expiration = order.expiration;
 
         return basketCheckout;
     }
