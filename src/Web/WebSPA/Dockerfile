@@ -1,15 +1,13 @@
 #See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
 
 ARG NODE_IMAGE=15.12.0-alpine3.12
-ARG NET_IMAGE=5.0-buster-slim
+ARG NET_IMAGE=6.0-bullseye-slim
 FROM mcr.microsoft.com/dotnet/aspnet:${NET_IMAGE} AS base
 WORKDIR /app
 EXPOSE 80
 # install node
 RUN apt-get update -yq \
-    && apt-get install curl gnupg -yq \
-    && curl -sL https://deb.nodesource.com/setup_10.x | bash \
-    && apt-get install nodejs -yq
+    && apt-get install nodejs npm -yq
 
 FROM node:${NODE_IMAGE} as node-build
 WORKDIR /web
