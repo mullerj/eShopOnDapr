@@ -3,8 +3,7 @@ import { CampaignsService }        from './campaigns.service';
 import { ICampaign }               from '../shared/models/campaign.model';
 import { IPager }               from '../shared/models/pager.model';
 import { ConfigurationService } from '../shared/services/configuration.service';
-import { Observable } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 
 @Component({
     selector: 'esh-campaigns',
@@ -42,7 +41,6 @@ export class CampaignsComponent implements OnInit {
     getCampaigns(pageSize: number, pageIndex: number) {
         this.errorReceived = false;
         this.service.getCampaigns(pageIndex, pageSize)
-            .pipe(catchError((err) => this.handleError(err)))
             .subscribe(campaigns => {
                 this.campaigns = campaigns;
                 this.paginationInfo = {
@@ -52,7 +50,9 @@ export class CampaignsComponent implements OnInit {
                     totalPages: Math.ceil(campaigns.count / campaigns.pageSize),
                     items: campaigns.pageSize
                 };
-        });
+            },
+                err => this.handleError(err)
+            );
     }
 
     onNavigateToDetails(uri: string) {
@@ -61,7 +61,7 @@ export class CampaignsComponent implements OnInit {
 
     private handleError(error: any) {
         this.errorReceived = true;
-        return Observable.throw(error);
+        return throwError(error);
     }  
 }
 

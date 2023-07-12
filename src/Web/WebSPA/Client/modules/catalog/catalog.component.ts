@@ -1,5 +1,5 @@
 import { Component, OnInit }    from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subscription, throwError } from 'rxjs';
 import { catchError }           from 'rxjs/operators';
 
 import { CatalogService }       from './catalog.service';
@@ -86,7 +86,6 @@ export class CatalogComponent implements OnInit {
     getCatalog(pageSize: number, pageIndex: number, brand?: number, type?: number) {
         this.errorReceived = false;
         this.service.getCatalog(pageIndex, pageSize, brand, type)
-            .pipe(catchError((err) => this.handleError(err)))
             .subscribe(catalog => {
                 this.catalog = catalog;
                 this.paginationInfo = {
@@ -96,7 +95,9 @@ export class CatalogComponent implements OnInit {
                     totalPages: Math.ceil(catalog.count / catalog.pageSize),
                     items: catalog.pageSize
                 };
-        });
+            },
+                err => this.handleError(err)
+            );
     }
 
     getTypes() {
@@ -117,7 +118,7 @@ export class CatalogComponent implements OnInit {
 
     private handleError(error: any) {
         this.errorReceived = true;
-        return Observable.throw(error);
+        return throwError(error);
     }
 
     public getPictureUrl(catalogItem: ICatalogItem) {
