@@ -7,20 +7,22 @@ WORKDIR /app
 EXPOSE 80
 # install node
 RUN apt-get update -yq \
-    && apt-get install nodejs npm -yq
+    && apt-get install curl gnupg -yq \
+    && curl -sL https://deb.nodesource.com/setup_18.x | bash \
+    && apt-get install nodejs -yq
 
 FROM node:${NODE_IMAGE} as node-build
 WORKDIR /web
 COPY src/Web/WebSPA/package.json .
 COPY src/Web/WebSPA/package-lock.json .
 COPY src/Web/WebSPA .
-RUN npm i npm@6.14.11 -g && npm update && npm install && npm run build:prod
+RUN npm update && npm install && npm run build:prod
 
 FROM mcr.microsoft.com/dotnet/sdk:${NET_IMAGE} AS build
 # install node
 RUN apt-get update -yq \
     && apt-get install curl gnupg -yq \
-    && curl -sL https://deb.nodesource.com/setup_10.x | bash \
+    && curl -sL https://deb.nodesource.com/setup_18.x | bash \
     && apt-get install nodejs -yq
 WORKDIR /src
 
