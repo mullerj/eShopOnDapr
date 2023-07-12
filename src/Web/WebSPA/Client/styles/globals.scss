@@ -1,10 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 @import 'variables';
 @import './bootstrap-overrides';
-@import '~bootstrap/scss/bootstrap';
+@import 'bootstrap';
 @import 'button';
 @import 'form';
-@import '~ngx-toastr/toastr-bs4-alert.scss';
+@import 'ngx-toastr/toastr-bs4-alert';
 @import 'toastr';
 @import 'utilities';
 

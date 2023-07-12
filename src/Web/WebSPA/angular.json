@@ -23,6 +23,12 @@
             "styles": [
               "Client/styles/globals.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "../node_modules/bootstrap/scss",
+                "../node_modules/ngx-toastr"
+              ]
+            },
             "scripts": []
           },
           "configurations": {
@@ -73,6 +79,12 @@
             "styles": [
               "Client/styles/globals.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "../node_modules/bootstrap/scss",
+                "../node_modules/ngx-toastr"
+              ]
+            },
             "assets": [
               "Client/assets",
               "Client/favicon.png"
