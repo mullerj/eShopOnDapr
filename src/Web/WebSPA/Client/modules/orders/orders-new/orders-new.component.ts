@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 import { OrdersService } from '../orders.service';
 import { BasketService } from '../../basket/basket.service';
 import { IOrder }                                   from '../../shared/models/order.model';
-import { BasketWrapperService }                     from '../../shared/services/basket.wrapper.service';
 
 import { FormGroup, FormBuilder, Validators  }      from '@angular/forms';
 import { Router }                                   from '@angular/router';
@@ -55,7 +54,7 @@ export class OrdersNewComponent implements OnInit {
             .pipe(catchError((errMessage) => {
                 this.errorReceived = true;
                 this.isOrderProcessing = false;
-                return Observable.throw(errMessage); 
+                return throwError(errMessage); 
             }))
             .subscribe(res => {
                 this.router.navigate(['orders']);
