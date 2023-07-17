@@ -1,7 +1,14 @@
 ﻿var builder = WebApplication.CreateBuilder(args);
 
 builder.Services
-    .AddHealthChecksUI()
+    .AddHealthChecksUI(setup =>
+    {
+        _ = setup.UseApiEndpointHttpMessageHandler(_ =>
+            new HttpClientHandler
+            {
+                ServerCertificateCustomValidationCallback = (_, _, _, _) => true
+            });
+    })
     .AddInMemoryStorage();
 
 builder.Logging.AddJsonConsole();
