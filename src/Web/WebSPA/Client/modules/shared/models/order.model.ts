@@ -14,7 +14,7 @@ export interface IOrder {
     cardholdername: string;
     cardtypeid: number;
     buyer: string;
-    ordernumber: string;
+    orderNumber: number;
     subtotal: number,
     total: number;
     orderItems: IOrderItem[];
