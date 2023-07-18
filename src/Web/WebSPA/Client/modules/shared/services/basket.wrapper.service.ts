@@ -23,7 +23,7 @@ export class BasketWrapperService {
     addItemToBasket(item: ICatalogItem) {
         if (this.identityService.IsAuthorized) {
             let basketItem: IBasketItem = {
-                pictureUrl: item.pictureFileName,
+                pictureFileName: item.pictureFileName,
                 productId: item.id,
                 productName: item.name,
                 quantity: 1,

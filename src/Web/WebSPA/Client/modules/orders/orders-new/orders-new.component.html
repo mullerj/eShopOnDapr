@@ -73,20 +73,20 @@
                      *ngFor="let item of order.orderItems">
                 <div class="esh-orders_new-thumbnail-container">
                     <div class="esh-orders_new-thumbnail-wrapper">
-                        <img class="esh-orders_new-thumbnail" src="{{item.pictureurl}}">
+                        <img class="esh-orders_new-thumbnail" src="{{getPictureUrl(item)}}">
                     </div>
                 </div>
                 <div class="row w-100 ml-3">
-                    <div class="col-6">{{item.productname}}</div>
-                    <div class="col-2">$ {{item.unitprice | number:'.2-2'}}</div>
+                    <div class="col-6">{{item.productName}}</div>
+                    <div class="col-2">$ {{item.unitPrice | number:'.2-2'}}</div>
                     <div class="col-2">{{item.units}}</div>
-                    <div class="col-2 text-right">$ {{(item.units * item.unitprice) | number:'.2-2'}}</div>
+                    <div class="col-2 text-right">$ {{(item.units * item.unitPrice) | number:'.2-2'}}</div>
                 </div>
             </article>
 
             <div class="divider d-flex align-items-center justify-content-end mb-4 pt-4 text-uppercase u-text-xl">
                 <div>Total</div>
-                <div class="ml-3">${{order.total | number:'.2-2'}}</div>
+                <div class="ml-3">${{getTotal() | number:'.2-2'}}</div>
             </div>
 
             <div class="esh-orders_new-buttons d-flex justify-content-end align-items-center">

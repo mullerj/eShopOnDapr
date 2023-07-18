@@ -8,6 +8,8 @@ import { IOrder }                                   from '../../shared/models/or
 
 import { FormGroup, FormBuilder, Validators  }      from '@angular/forms';
 import { Router }                                   from '@angular/router';
+import { IOrderItem } from '../../shared/models/orderItem.model';
+import { ConfigurationService } from '../../shared/services/configuration.service';
 
 @Component({
     selector: 'esh-orders_new .esh-orders_new .mb-5',
@@ -20,7 +22,7 @@ export class OrdersNewComponent implements OnInit {
     errorReceived: boolean;
     order: IOrder;
 
-    constructor(private orderService: OrdersService, private basketService: BasketService, fb: FormBuilder, private router: Router) {
+    constructor(private orderService: OrdersService, private basketService: BasketService, private configurationService: ConfigurationService, fb: FormBuilder, private router: Router) {
         // Obtain user profile information
         this.order = orderService.mapOrderAndIdentityInfoNewOrder();
         this.newOrderForm = fb.group({
@@ -61,6 +63,17 @@ export class OrdersNewComponent implements OnInit {
             });
         this.errorReceived = false;
         this.isOrderProcessing = true;
+    }
+
+    getTotal(): number {
+        if (this.order == undefined || this.order.orderItems == undefined) {
+            return 0;
+        }
+        return this.order.orderItems.reduce((total, orderItem) => total + (orderItem.units * orderItem.unitPrice), 0);
+    }
+
+    public getPictureUrl(orderItem: IOrderItem) {
+        return `${this.configurationService.serverSettings.purchaseUrl}/c/pics/${orderItem.pictureFileName}`;
     }
 }
 
