@@ -17,15 +17,15 @@
     
             <article class="esh-orders-item divider row"
                      *ngFor="let order of orders">
-                <section class="col-1">{{order.ordernumber}}</section>
-                <section class="col-3">{{order.date | date:'short'}}</section>
+                <section class="col-1">{{order.orderNumber}}</section>
+                <section class="col-3">{{order.orderDate | date:'short'}}</section>
                 <section class="col-2">${{order.total}}</section>
-                <section class="col-2">{{order.status}}</section>
+                <section class="col-2">{{order.orderStatus}}</section>
                 <section class="col-2">
-                    <a *ngIf="order.status === 'Submitted'" (click)="cancelOrder(order.ordernumber)" class="esh-orders-link u-cursor-pointer">Cancel</a>
+                    <a *ngIf="order.status === 'Submitted'" (click)="cancelOrder(order.orderNumber)" class="esh-orders-link u-cursor-pointer">Cancel</a>
                 </section>
                 <section class="col-2">
-                    <a class="esh-orders-link" routerLink="/orders/{{order.ordernumber}}">Details</a>
+                    <a class="esh-orders-link" routerLink="/orders/{{order.orderNumber}}">Details</a>
                 </section>
             </article>
     

@@ -246,6 +246,8 @@ services:
       - HealthChecksUI__HealthChecks__5__Uri=http://webshoppingagg/hc
       - HealthChecksUI__HealthChecks__6__Name=Blazor UI Host
       - HealthChecksUI__HealthChecks__6__Uri=https://blazor-client/hc
+      - HealthChecksUI__HealthChecks__7__Name=Web SPA
+      - HealthChecksUI__HealthChecks__7__Uri=http://webspa/hc
     ports:
       - "5107:80"
 

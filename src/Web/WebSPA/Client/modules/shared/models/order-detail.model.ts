@@ -1,16 +1,13 @@
+import { IAddress } from './address.model';
 import {IOrderItem} from './orderItem.model';
 
 export interface IOrderDetail {
-    ordernumber: string;
-    status: string;
+    orderNumber: number;
+    orderStatus: string;
     description: string;
-    street: string;
-    date: Date;
-    city: number;
-    state: string;
-    zipcode: string;
-    country: number;
+    orderDate: Date;
     subtotal: number;
     total: number;
-    orderitems: IOrderItem[];
+    orderItems: IOrderItem[];
+    address: IAddress;
 }
