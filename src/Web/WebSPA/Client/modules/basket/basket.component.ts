@@ -7,6 +7,7 @@ import { BasketService } from './basket.service';
 import { IBasket } from '../shared/models/basket.model';
 import { IBasketItem } from '../shared/models/basketItem.model';
 import { BasketWrapperService } from '../shared/services/basket.wrapper.service';
+import { ConfigurationService } from '../shared/services/configuration.service';
 
 @Component({
     selector: 'esh-basket .esh-basket .mb-5',
@@ -18,7 +19,7 @@ export class BasketComponent implements OnInit {
     basket: IBasket;
     totalPrice: number = 0;
 
-    constructor(private basketSerive: BasketService, private router: Router, private basketWrapperService: BasketWrapperService) { }
+    constructor(private basketSerive: BasketService, private router: Router, private basketWrapperService: BasketWrapperService, private configurationService: ConfigurationService) { }
 
     ngOnInit() {
         this.basketSerive.getBasket().subscribe(basket => {
@@ -72,5 +73,9 @@ export class BasketComponent implements OnInit {
         this.basket.items.forEach(item => {
             this.totalPrice += (item.unitPrice * item.quantity);
         });
+    }
+
+    public getPictureUrl(basketItem: IBasketItem) {
+        return `${this.configurationService.serverSettings.purchaseUrl}/c/pics/${basketItem.pictureFileName}`;
     }
 }

@@ -75,7 +75,7 @@ export class OrdersService {
         order.orderItems = new Array<IOrderItem>();
         basket.items.forEach(x => {
             let item: IOrderItem = <IOrderItem>{};
-            item.pictureFileName = x.pictureUrl;
+            item.pictureFileName = x.pictureFileName;
             item.productId =  +x.productId;
             item.productName = x.productName;
             item.unitPrice = x.unitPrice;
