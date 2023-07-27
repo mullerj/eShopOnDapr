@@ -24,7 +24,7 @@ data:
   HealthChecksUI__HealthChecks__6__Name: Blazor Client
   HealthChecksUI__HealthChecks__6__Uri: http://blazor-client/hc
   HealthChecksUI__HealthChecks__7__Name: Web SPA
-  HealthChecksUI__HealthChecks__7__Uri: http://webspa/hc
+  HealthChecksUI__HealthChecks__7__Uri: http://webspa:8080/hc
 
 ---
 
