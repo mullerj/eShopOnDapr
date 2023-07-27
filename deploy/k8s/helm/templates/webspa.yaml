@@ -9,7 +9,7 @@ metadata:
 data:
   ASPNETCORE_ENVIRONMENT: Docker
   ASPNETCORE_URLS: http://0.0.0.0:80
-  CallBackUrl: http://{{ .Values.hostName }}/spa/
+  CallBackUrl: http://{{ .Values.hostName }}:8080/
   DPConnectionString: basketdata
   BasketUrl: http://{{ .Values.hostName }}/gateway/
   IdentityUrl: http://{{ .Values.hostName }}/identity
@@ -72,62 +72,9 @@ metadata:
     service: webspa
 spec:
   ports:
-    - port: 80
+    - port: 8080
       targetPort: webspa-http
       name: http
+  type: LoadBalancer
   selector:
     service: webspa
-
----
-
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: webspa-ingress
-  namespace: {{ .Values.namespace }}
-  labels:
-    app: eshop
-    service: webspa
-  annotations:
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"
-    nginx.ingress.kubernetes.io/use-regex: "true"
-spec:
-  ingressClassName: nginx
-  rules:
-  - host: {{ .Values.hostName }}
-    http:
-      paths: 
-      - path: /spa(/.*)
-        pathType: Prefix
-        backend:
-          service:
-            name: webspa
-            port: 
-              number: 80
-
----
-
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: webspa-ingress-redirect
-  namespace: {{ .Values.namespace }}
-  labels:
-    app: eshop
-    service: webspa
-  annotations:
-    nginx.ingress.kubernetes.io/permanent-redirect: "http://{{ .Values.hostName }}/spa/"
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"
-spec:
-  ingressClassName: nginx
-  rules:
-  - host: {{ .Values.hostName }}
-    http:
-      paths: 
-      - path: /spa
-        pathType: Exact
-        backend:
-          service:
-            name: webspa
-            port: 
-              name: http
