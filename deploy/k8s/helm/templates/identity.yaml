@@ -13,7 +13,7 @@ data:
   SeqServerUrl: http://seq
   IssuerUrl: http://{{ .Values.hostName}}
   BlazorClientUrlExternal: http://{{ .Values.hostName}}
-  SpaClient: http://{{ .Values.hostName }}:8080/
+  SpaClient: http://{{ .Values.hostName }}:8080
 
 ---
 

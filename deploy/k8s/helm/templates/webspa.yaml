@@ -9,7 +9,7 @@ metadata:
 data:
   ASPNETCORE_ENVIRONMENT: Docker
   ASPNETCORE_URLS: http://0.0.0.0:80
-  CallBackUrl: http://{{ .Values.hostName }}:8080/
+  CallBackUrl: http://{{ .Values.hostName }}:8080
   DPConnectionString: basketdata
   BasketUrl: http://{{ .Values.hostName }}/gateway/
   IdentityUrl: http://{{ .Values.hostName }}/identity
